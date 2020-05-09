@@ -1,55 +1,44 @@
 package com.balalin.servlet;
 
+import com.kirilin.ConnectDB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
-@WebServlet("/")
+@WebServlet("/newUser")
 public class UserCreateServlet extends HttpServlet {
 
     private Connection connection;
 
     @Override
     public void init() throws ServletException {
-        Properties properties = new Properties();
         try {
-            properties.load(new FileInputStream(getServletContext().getRealPath("/WEB-INF/classes/db.properties")));
-            String dbUrl = properties.getProperty("db.url");
-            String dbUsername = properties.getProperty("db.username");
-            String dbPassword = properties.getProperty("db.userpassword");
-            String driverClassName = properties.getProperty("db.driverClassName");
-
-            Class.forName(driverClassName);
-            connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+            connection = ConnectDB.Get(getServletContext()
+                    .getRealPath("/WEB-INF/classes/db.properties"));
         } catch (IOException | SQLException | ClassNotFoundException e) {
             throw new IllegalStateException(e);
         }
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter writer = resp.getWriter()) {
-            writer.println("Servlet is running");
-            req.getRequestDispatcher("/");
-        }
-
+    protected void doGet(HttpServletRequest request,
+                         HttpServletResponse response)
+            throws ServletException, IOException {
+        request.getRequestDispatcher("/view/createNewUser.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req,
+                          HttpServletResponse resp)
+            throws ServletException, IOException {
         String userID = "TEMP VALUE";
+        //не совсем понимаю зачем нужно одновременно username и userlogin
         String userName = req.getParameter("username");
         String userLogin = req.getParameter("userlogin");
         String userEmail = req.getParameter("useremail");
@@ -57,6 +46,7 @@ public class UserCreateServlet extends HttpServlet {
 
         try {
             Statement statement = connection.createStatement();
+            // лучше использовать какой нибодь фреймворк
             String sqlInsert = String.format("INSERT INTO users (user_id, user_name, user_login, user_email, user_password) VALUES('%s', '%s', '%s', '%s', '%s');", userID, userName, userLogin, userEmail, userPassword);
             System.out.println(sqlInsert);                  // just look
             statement.execute(sqlInsert);
@@ -66,4 +56,5 @@ public class UserCreateServlet extends HttpServlet {
             throw new IllegalStateException(throwables);
         }
     }
+
 }
