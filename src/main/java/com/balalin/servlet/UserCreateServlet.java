@@ -9,10 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Properties;
 
 @WebServlet("/")
@@ -56,11 +53,13 @@ public class UserCreateServlet extends HttpServlet {
         String userPassword = req.getParameter("userpassword");
 
         try {
-            Statement statement = connection.createStatement();
-            String sqlInsert = String.format("INSERT INTO users (user_id, user_name, user_login, user_email, user_password) VALUES('%s', '%s', '%s', '%s', '%s');", userID, userName, userLogin, userEmail, userPassword);
-            System.out.println(sqlInsert);                  // just look
-            statement.execute(sqlInsert);
-
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users (id, name, login, email, password) VALUES (?, ?, ?, ?, ?)");
+            preparedStatement.setString(1, userID);
+            preparedStatement.setString(2, userName);
+            preparedStatement.setString(3, userLogin);
+            preparedStatement.setString(4, userEmail);
+            preparedStatement.setString(5, userPassword);
+            preparedStatement.execute();
 
         } catch (SQLException throwables) {
             throw new IllegalStateException(throwables);
