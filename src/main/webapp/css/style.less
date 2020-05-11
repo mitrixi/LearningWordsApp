@@ -1,0 +1,171 @@
+@ligthColor: #EFF6F8;
+@primatyColorDark: rgba(46, 36, 6, 0.795);
+@primatyColorLigth: rgba(112, 97, 53, 0.7);
+
+@secondaryColorDark: #5EA27C;
+@secondaryColorLigth: #89B9AA;
+
+@formColor: #E89124;
+@formColorDark: #E6857A;
+@backgroundColorDark: #989DA5;
+@backgroundColorLigth: #B1B6C2;
+
+@shadowColorDark: rgba(0, 0, 0, 0.3);
+@shadowColorLigth: rgba(133, 133, 133, 0.3);
+
+
+@padding: 1rem;
+@borderWidth: 0.1rem;
+@borderRadius: 0.7rem;
+@transitionDurationSlow: 0.5s;
+@transitionDurationFast: 0.1s;
+
+@fontSizeSmall: 0.5rem;
+@fontSizeNormal: 1rem;
+@fontSizeBig: 1.8rem;
+
+
+
+html, body{
+    margin: 0;
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient( 90deg,
+      rgba(255, 225, 132, .7) 50%, rgba(255,255,255, 0) 50%),
+    linear-gradient( 90deg,
+      rgba(32, 113, 120, .3) 50%, rgba(255,255,255, 0) 50%),
+    linear-gradient( 90deg,
+      rgba(255, 150, 102, .3) 50%, rgba(255,255,255, 0) 50%),
+    linear-gradient( 90deg,
+      rgba(23, 76, 79, .1) 50%, rgba(255,255,255, 0) 50%);
+    background-size: 7em 7em, 5em 5em, 3em 3em, 1em 1em;
+    background-color: #F5E9BE;
+  font: 10px/1.4 'Trebuchet MS', Verdana, sans-serif;
+}
+
+html, body, div, form, content, input, span, label{
+    box-sizing: border-box;
+    font-size: @fontSizeNormal;
+}
+
+content{
+    transition-duration: @transitionDurationSlow;
+}
+
+input[type="button"], input[type="submit"]{
+    cursor: pointer;
+    transition-duration: @transitionDurationSlow;
+    padding: @padding;
+    display: inherit;
+    width: 100%;
+}
+
+input[type="button"]:disabled, input[type="submit"]:disabled{
+    background-color: @backgroundColorDark;
+    color: white;
+}
+
+input[type="button"]:active, input[type="submit"]:active{
+    background-color: @formColor;
+    transition-duration: @transitionDurationFast;
+}
+
+input[type="text"], input[type="password"], input[type="email"]{
+    background-color: transparent;
+    padding: @padding;
+    display: block;
+    width: 100%;
+    border:0;
+}
+
+.prymoryButton{
+    background-color: @primatyColorLigth;
+    color: white;
+}
+
+.prymoryButton:hover{
+    background-color: @primatyColorDark;
+}
+
+
+.secondaryButton{
+    background-color: white;
+    color: black;
+    border: 0;
+}
+
+.secondaryButton:hover{
+    background-color: @primatyColorDark;
+    color: white;
+}
+
+.flexContanerVertical{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:center;
+}
+
+.flexContanerHorizontally{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items:center;
+}
+
+.loginForm{
+    width: 600px;
+    background-color: white;
+    padding: 3rem;    
+}
+
+.loginFormImg{
+    width: @padding * 1.5;
+    padding: @padding;
+    
+}
+
+.loginFormTextField{
+    background-color: @ligthColor;
+}
+
+.shadow{
+    box-shadow: 0 0 3px 3px @shadowColorDark;
+}
+
+.horizontalListItem{
+    border-radius:0;
+    overflow: hidden;
+}
+
+.horizontalListItem .border{
+    border-left: @borderWidth solid @primatyColorLigth;
+    border-right: @borderWidth solid @primatyColorLigth;
+    border-top: @borderWidth solid @primatyColorLigth;
+    border-bottom: 0;
+}
+
+.horizontalListItem .border:last-child{
+    border-bottom: @borderWidth solid @primatyColorLigth;
+}
+
+.horizontalListItem:first-child{
+    border-top-left-radius: @borderRadius;
+    border-top-right-radius: @borderRadius;
+}
+
+.horizontalListItem:last-child{
+    border-bottom-left-radius: @borderRadius;
+    border-bottom-right-radius: @borderRadius;
+}
+
+.alertSpan{
+    position: absolute;
+}
+
+.titleLable{
+    background-color: white;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
