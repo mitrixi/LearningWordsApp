@@ -24,32 +24,50 @@
 @fontSizeNormal: 1rem;
 @fontSizeBig: 1.8rem;
 
-
-
 html, body{
     margin: 0;
     width: 100vw;
-    min-height: 100vh;
-    background: linear-gradient( 90deg,
-      rgba(255, 225, 132, .7) 50%, rgba(255,255,255, 0) 50%),
-    linear-gradient( 90deg,
-      rgba(32, 113, 120, .3) 50%, rgba(255,255,255, 0) 50%),
-    linear-gradient( 90deg,
-      rgba(255, 150, 102, .3) 50%, rgba(255,255,255, 0) 50%),
-    linear-gradient( 90deg,
-      rgba(23, 76, 79, .1) 50%, rgba(255,255,255, 0) 50%);
+    background: linear-gradient( 90deg, rgba(255, 225, 132, .7) 50%, rgba(255,255,255, 0) 50%),
+                    linear-gradient( 90deg, rgba(32, 113, 120, .3) 50%, rgba(255,255,255, 0) 50%),
+                    linear-gradient( 90deg, rgba(255, 150, 102, .3) 50%, rgba(255,255,255, 0) 50%),
+                    linear-gradient( 90deg, rgba(23, 76, 79, .1) 50%, rgba(255,255,255, 0) 50%);
     background-size: 7em 7em, 5em 5em, 3em 3em, 1em 1em;
     background-color: #F5E9BE;
   font: 10px/1.4 'Trebuchet MS', Verdana, sans-serif;
 }
 
-html, body, div, form, content, input, span, label{
+html, body, div, form, content, input, span, label, footer, a, header{
     box-sizing: border-box;
     font-size: @fontSizeNormal;
 }
 
+hr{
+    margin:0;
+}
+
+footer{
+    text-align: center;
+    background-color:white;
+    margin-top:auto;
+    margin-bottom:0;
+    padding-top:@padding;
+    padding-bottom:@padding;
+    margin-top:@padding;
+}
+
+header{
+    margin-bottom:@padding;
+}
+
 content{
     transition-duration: @transitionDurationSlow;
+    padding-left:@padding;
+    padding-right:@padding;
+}
+
+h5{
+    padding:0;
+    margin:0;
 }
 
 input[type="button"], input[type="submit"]{
@@ -67,7 +85,7 @@ input[type="button"]:disabled, input[type="submit"]:disabled{
 
 input[type="button"]:active, input[type="submit"]:active{
     background-color: @formColor;
-    transition-duration: @transitionDurationFast;
+    transition-duration: @transitionDurationSlow;
 }
 
 input[type="text"], input[type="password"], input[type="email"]{
@@ -76,6 +94,17 @@ input[type="text"], input[type="password"], input[type="email"]{
     display: block;
     width: 100%;
     border:0;
+}
+
+.mainContent{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    max-width:900px;
+    margin-left:auto;
+    margin-right:auto;
+    min-height: 100vh;
+    background-color: white;
 }
 
 .prymoryButton{
@@ -89,14 +118,21 @@ input[type="text"], input[type="password"], input[type="email"]{
 
 
 .secondaryButton{
+    transition-duration: @transitionDurationSlow;
     background-color: white;
     color: black;
     border: 0;
 }
 
 .secondaryButton:hover{
+    transition-duration: @transitionDurationSlow;
     background-color: @primatyColorDark;
     color: white;
+}
+
+.secondaryButton:active{
+    transition-duration: @transitionDurationSlow;
+    background-color: @formColor;
 }
 
 .flexContanerVertical{
@@ -113,10 +149,24 @@ input[type="text"], input[type="password"], input[type="email"]{
     align-items:center;
 }
 
+.flexContanerHorizontally a{
+    padding:@padding;
+    width:100%;
+}
+
 .loginForm{
-    width: 600px;
+    max-width: 600px;
+    width:100%;
     background-color: white;
     padding: 3rem;    
+}
+
+.loginFormContaner{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:center;
+    border:@borderWidth;
 }
 
 .loginFormImg{
@@ -133,20 +183,20 @@ input[type="text"], input[type="password"], input[type="email"]{
     box-shadow: 0 0 3px 3px @shadowColorDark;
 }
 
-.horizontalListItem{
-    border-radius:0;
-    overflow: hidden;
-}
-
-.horizontalListItem .border{
+.border{
     border-left: @borderWidth solid @primatyColorLigth;
     border-right: @borderWidth solid @primatyColorLigth;
     border-top: @borderWidth solid @primatyColorLigth;
     border-bottom: 0;
 }
 
-.horizontalListItem .border:last-child{
+.border:last-child{
     border-bottom: @borderWidth solid @primatyColorLigth;
+}
+
+.horizontalListItem{
+    border-radius:0;
+    overflow: hidden;
 }
 
 .horizontalListItem:first-child{
@@ -168,4 +218,35 @@ input[type="text"], input[type="password"], input[type="email"]{
     margin: 0;
     text-align: center;
     width: 100%;
+    overflow:hidden;
+}
+
+.navbar{
+    display:flex;
+    flex-direction:row;
+    background-color:width;
+    justify-content: space-between;
+}
+
+.navbar ul{
+    margin:0;
+    padding:0;
+}
+
+.navbar li{
+    display: flex;
+    align-items: center;
+    width: max-content;
+}
+
+.navbar li:first-child{
+    margin-left:auto;
+}
+
+.navbar a{
+    padding:@padding;
+}
+
+.navbar .secondaryButton{
+    width:auto;
 }

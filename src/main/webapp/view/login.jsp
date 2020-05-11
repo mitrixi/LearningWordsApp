@@ -1,31 +1,32 @@
-﻿<%@page contentType="text/html" pageEncoding="UTF-8"%>
+﻿<%@page contentType="text/html" pageEncoding="UTF-8" language="java" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 
-<t:wrapper>
-<content class="shadow horizontalListItem" id="content">
-    <div class="horizontalListItem titleLable">
-        <H3>Войти</H3>
-        <a href="/newUser">У меня нет аккаунта</a>
-    <div>
-    <div class="loginForm">
-        <div id="loginForm" >
-            <form method="post" action="/login">
-                <div>
-                    <div class="horizontalListItem border flexContanerHorizontally loginFormTextField">
-                        <img class="loginFormImg" src="img/userImg.svg" />
-                        <input type="text" name="username" pattern="[A-Za-zА-Яа-яЁё\s]+" placeholder="Имя пользователя" role="textbox"/>
+<t:wrapper title="Вход">
+    <jsp:body>
+        <content class="loginFormContaner">
+            <div class="loginForm">
+                <div class="titleLable">
+                    <div class="flexContanerHorizontally">
+                        <a class="secondaryButton" href="/newUser">У меня нет аккаунта</a>
+                        <a class="secondaryButton" href="/newUser">Восстановить пароль</a>
                     </div>
-                    <div class="horizontalListItem border flexContanerHorizontally loginFormTextField">
-                        <img class="loginFormImg" src="img/keyImg.svg" />
-                        <input type="password" name="userpassword" pattern="[A-Za-zА-Яа-яЁё0-9]+" placeholder="Пароль" role="textbox"/>
-                    </div>
-                    <input class="horizontalListItem border prymoryButton" type="submit" value="Войти" />
-                </div><br><br>
-                <label><input type="checkbox"/>Запомнить меня</label>
-            </form><br>
-
-            <input class="secondaryButton" type="button" value="Восстановить пароль" />
-        </div>
-    </div>
-</content>
+                </div>
+                <br/><br/>
+                <form  method="post" action="/login">
+                    <div>
+                        <div class="horizontalListItem border flexContanerHorizontally loginFormTextField">
+                            <img class="loginFormImg" src="img/userImg.svg" />
+                            <input type="text" name="username" pattern="[A-Za-zА-Яа-яЁё\s]+" placeholder="Имя пользователя" role="textbox"/>
+                        </div>
+                        <div class="horizontalListItem border flexContanerHorizontally loginFormTextField">
+                            <img class="loginFormImg" src="img/keyImg.svg" />
+                            <input type="password" name="userpassword" pattern="[A-Za-zА-Яа-яЁё0-9]+" placeholder="Пароль" role="textbox"/>
+                        </div>
+                        <input class="horizontalListItem border prymoryButton" type="submit" value="Войти" />
+                    </div><br><br>
+                    <label><input type="checkbox"/>Запомнить меня</label>
+                </form>
+            </div>
+        </content>
+    </jsp:body>
 </t:wrapper>

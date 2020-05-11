@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet("/")
+@WebServlet("/home")
 public class HomeServlet extends HttpServlet {
 
     private Connection connection;
@@ -32,9 +32,9 @@ public class HomeServlet extends HttpServlet {
             throws ServletException, IOException {
         //необходимо реализовать логику проверки залогинился ли пользователь на сайт
         //если нет то вывести страницу авторизации
-        request.getRequestDispatcher("/view/login.jsp").forward(request, response);
+        //request.getRequestDispatcher("/view/login.jsp").forward(request, response);
         //если да то вывести гравную страницу
-        request.getRequestDispatcher("/view/Home.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/home.jsp").forward(request, response);
     }
 
 }

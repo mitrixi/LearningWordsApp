@@ -1,4 +1,8 @@
-<%@tag description="Main layer page" pageEncoding="UTF-8"%>
+<%@ tag body-content="scriptless" %>
+<%@ tag description="Main layer page" pageEncoding="UTF-8" %>
+<%@ attribute name="title" required="true"  rtexprvalue="false" type="java.lang.String" %>
+<%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+
 <!DOCTYPE html>
 <html lang="ru">
     <head>
@@ -10,9 +14,14 @@
 
         <link rel="stylesheet/less" type="text/css" href="/css/style.less" />
         <script src="/js/less/dist/less.js"  type="text/javascript"></script>
-        <title>Изучение слов - </title>
+        <title>Изучение слов - ${title} </title>
     </head>
-    <body class="backColorBase flexContanerVertical">
-    <jsp:doBody/>
+    <body>
+        <div class="mainContent shadow">
+            <t:navbar authorized="false"/>
+            <jsp:doBody/>
+            <t:footer authorized="false"/>
+        </div>
+
     </body>
 </html>
