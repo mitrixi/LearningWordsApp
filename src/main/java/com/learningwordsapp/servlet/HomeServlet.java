@@ -1,4 +1,4 @@
-package com.balalin.servlet;
+package com.learningwordsapp.servlet;
 
 import com.kirilin.ConnectDB;
 
@@ -17,19 +17,16 @@ public class HomeServlet extends HttpServlet {
     private Connection connection;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         try {
-            connection = ConnectDB.Get(getServletContext()
-                    .getRealPath("/WEB-INF/classes/db.properties"));
+            connection = ConnectDB.get(getServletContext().getRealPath("/WEB-INF/classes/db.properties"));
         } catch (IOException | SQLException | ClassNotFoundException e) {
             throw new IllegalStateException(e);
         }
     }
 
     @Override
-    protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //необходимо реализовать логику проверки залогинился ли пользователь на сайт
         //если нет то вывести страницу авторизации
         //request.getRequestDispatcher("/view/login.jsp").forward(request, response);

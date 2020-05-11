@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConnectDB {
-    public static Connection Get(String realPath)
-            throws ClassNotFoundException, SQLException, IOException {
+    public static Connection get(String realPath) throws ClassNotFoundException, SQLException, IOException {
+
         Properties properties = new Properties();
         properties.load(new FileInputStream(realPath));
         String dbUrl = properties.getProperty("db.url");
@@ -18,6 +18,7 @@ public class ConnectDB {
         String dbPassword = properties.getProperty("db.userpassword");
         String driverClassName = properties.getProperty("db.driverClassName");
         Class.forName(driverClassName);
+
         return DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
     }
 }
