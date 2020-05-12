@@ -1,4 +1,4 @@
-@ligthColor: #EFF6F8;
+@ligthColor: rgb(207, 214, 216);
 @primatyColorDark: rgba(46, 36, 6, 0.795);
 @primatyColorLigth: rgba(112, 97, 53, 0.7);
 
@@ -8,7 +8,7 @@
 @formColor: #E89124;
 @formColorDark: #E6857A;
 @backgroundColorDark: #989DA5;
-@backgroundColorLigth: #B1B6C2;
+@backgroundColorLigth: rgb(247, 247, 247);
 
 @shadowColorDark: rgba(0, 0, 0, 0.3);
 @shadowColorLigth: rgba(133, 133, 133, 0.3);
@@ -24,35 +24,52 @@
 @fontSizeNormal: 1rem;
 @fontSizeBig: 1.8rem;
 
-
-
 html, body{
     margin: 0;
     width: 100vw;
-    min-height: 100vh;
-    background: linear-gradient( 90deg,
-      rgba(255, 225, 132, .7) 50%, rgba(255,255,255, 0) 50%),
-    linear-gradient( 90deg,
-      rgba(32, 113, 120, .3) 50%, rgba(255,255,255, 0) 50%),
-    linear-gradient( 90deg,
-      rgba(255, 150, 102, .3) 50%, rgba(255,255,255, 0) 50%),
-    linear-gradient( 90deg,
-      rgba(23, 76, 79, .1) 50%, rgba(255,255,255, 0) 50%);
+    background: linear-gradient( 90deg, rgba(255, 225, 132, .7) 50%, rgba(255,255,255, 0) 50%),
+                    linear-gradient( 90deg, rgba(32, 113, 120, .3) 50%, rgba(255,255,255, 0) 50%),
+                    linear-gradient( 90deg, rgba(255, 150, 102, .3) 50%, rgba(255,255,255, 0) 50%),
+                    linear-gradient( 90deg, rgba(23, 76, 79, .1) 50%, rgba(255,255,255, 0) 50%);
     background-size: 7em 7em, 5em 5em, 3em 3em, 1em 1em;
     background-color: #F5E9BE;
   font: 10px/1.4 'Trebuchet MS', Verdana, sans-serif;
 }
 
-html, body, div, form, content, input, span, label{
+html, body, div, form, content, input, span, label, footer, a, header, button{
     box-sizing: border-box;
     font-size: @fontSizeNormal;
 }
 
-content{
-    transition-duration: @transitionDurationSlow;
+hr{
+    margin:0;
 }
 
-input[type="button"], input[type="submit"]{
+footer{
+    text-align: center;
+    margin-top:auto;
+    margin-bottom:0;
+    padding-top:@padding;
+    padding-bottom:@padding;
+    margin-top:@padding;
+}
+
+header{
+    margin-bottom:@padding;
+}
+
+content{
+    transition-duration: @transitionDurationSlow;
+    padding-left:@padding;
+    padding-right:@padding;
+}
+
+h5{
+    padding:0;
+    margin:0;
+}
+
+input[type="button"], input[type="submit"], button{
     cursor: pointer;
     transition-duration: @transitionDurationSlow;
     padding: @padding;
@@ -60,22 +77,58 @@ input[type="button"], input[type="submit"]{
     width: 100%;
 }
 
-input[type="button"]:disabled, input[type="submit"]:disabled{
+input[type="button"]:disabled, input[type="submit"]:disabled, button:disabled{
     background-color: @backgroundColorDark;
     color: white;
 }
 
-input[type="button"]:active, input[type="submit"]:active{
+input[type="button"]:active, input[type="submit"]:active, button:active{
     background-color: @formColor;
-    transition-duration: @transitionDurationFast;
+    transition-duration: @transitionDurationSlow;
 }
 
-input[type="text"], input[type="password"], input[type="email"]{
+input[type="text"], input[type="password"], input[type="email"], button{
     background-color: transparent;
     padding: @padding;
     display: block;
     width: 100%;
     border:0;
+}
+
+.comment{
+    color: @backgroundColorDark;
+}
+
+.pageLinc{
+    padding: @padding;
+    margin-left: @padding;
+    margin-right: @padding;
+}
+
+.flexContanerWarpRow{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-left: @padding;
+    margin-right: @padding;
+}
+
+.flexContanerWarpColumn{
+    margin-left: @padding;
+    margin-right: @padding;
+    column-count: 2;
+}
+
+.mainContent{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    max-width:900px;
+    margin-left:auto;
+    margin-right:auto;
+    min-height: 100vh;
+    background-color: @backgroundColorLigth;
 }
 
 .prymoryButton{
@@ -89,14 +142,20 @@ input[type="text"], input[type="password"], input[type="email"]{
 
 
 .secondaryButton{
-    background-color: white;
+    transition-duration: @transitionDurationSlow;
     color: black;
     border: 0;
 }
 
 .secondaryButton:hover{
+    transition-duration: @transitionDurationSlow;
     background-color: @primatyColorDark;
     color: white;
+}
+
+.secondaryButton:active{
+    transition-duration: @transitionDurationSlow;
+    background-color: @formColor;
 }
 
 .flexContanerVertical{
@@ -113,10 +172,23 @@ input[type="text"], input[type="password"], input[type="email"]{
     align-items:center;
 }
 
+.flexContanerHorizontally a{
+    padding:@padding;
+    width:100%;
+}
+
 .loginForm{
-    width: 600px;
-    background-color: white;
+    max-width: 600px;
+    width:100%;
     padding: 3rem;    
+}
+
+.loginFormContaner{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:center;
+    border:@borderWidth;
 }
 
 .loginFormImg{
@@ -133,20 +205,20 @@ input[type="text"], input[type="password"], input[type="email"]{
     box-shadow: 0 0 3px 3px @shadowColorDark;
 }
 
-.horizontalListItem{
-    border-radius:0;
-    overflow: hidden;
-}
-
-.horizontalListItem .border{
+.border{
     border-left: @borderWidth solid @primatyColorLigth;
     border-right: @borderWidth solid @primatyColorLigth;
     border-top: @borderWidth solid @primatyColorLigth;
     border-bottom: 0;
 }
 
-.horizontalListItem .border:last-child{
+.border:last-child{
     border-bottom: @borderWidth solid @primatyColorLigth;
+}
+
+.horizontalListItem{
+    border-radius:0;
+    overflow: hidden;
 }
 
 .horizontalListItem:first-child{
@@ -164,8 +236,38 @@ input[type="text"], input[type="password"], input[type="email"]{
 }
 
 .titleLable{
-    background-color: white;
     margin: 0;
     text-align: center;
     width: 100%;
+    overflow:hidden;
+}
+
+.navbar{
+    display:flex;
+    flex-direction:row;
+    background-color:width;
+    justify-content: space-between;
+}
+
+.navbar ul{
+    margin:0;
+    padding:0;
+}
+
+.navbar li{
+    display: flex;
+    align-items: center;
+    width: max-content;
+}
+
+.navbar li:first-child{
+    margin-left:auto;
+}
+
+.navbar a{
+    padding:@padding;
+}
+
+.navbar .secondaryButton{
+    width:auto;
 }

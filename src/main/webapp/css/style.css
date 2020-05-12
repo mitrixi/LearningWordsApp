@@ -1,0 +1,263 @@
+html,
+body {
+	margin: 0;
+	width: 100vw;
+	background: linear-gradient(90deg, rgba(255, 225, 132, 0.7) 50%, rgba(255, 255, 255, 0) 50%), linear-gradient(90deg, rgba(32, 113, 120, 0.3) 50%, rgba(255, 255, 255, 0) 50%), linear-gradient(90deg, rgba(255, 150, 102, 0.3) 50%, rgba(255, 255, 255, 0) 50%), linear-gradient(90deg, rgba(23, 76, 79, 0.1) 50%, rgba(255, 255, 255, 0) 50%);
+	background-size: 7em 7em, 5em 5em, 3em 3em, 1em 1em;
+	background-color: #F5E9BE;
+	font: 10px/1.4 'Trebuchet MS', Verdana, sans-serif;
+}
+
+html,
+body,
+div,
+form,
+content,
+input,
+span,
+label,
+footer,
+a,
+header,
+button {
+	box-sizing: border-box;
+	font-size: 1rem;
+}
+
+hr {
+	margin: 0;
+}
+
+footer {
+	text-align: center;
+	margin-top: auto;
+	margin-bottom: 0;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	margin-top: 1rem;
+}
+
+header {
+	margin-bottom: 1rem;
+}
+
+content {
+	transition-duration: 0.5s;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+h5 {
+	padding: 0;
+	margin: 0;
+}
+
+input[type="button"],
+input[type="submit"],
+button {
+	cursor: pointer;
+	transition-duration: 0.5s;
+	padding: 1rem;
+	display: inherit;
+	width: 100%;
+}
+
+input[type="button"]:disabled,
+input[type="submit"]:disabled,
+button:disabled {
+	background-color: #989DA5;
+	color: white;
+}
+
+input[type="button"]:active,
+input[type="submit"]:active,
+button:active {
+	background-color: #E89124;
+	transition-duration: 0.5s;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+button {
+	background-color: transparent;
+	padding: 1rem;
+	display: block;
+	width: 100%;
+	border: 0;
+}
+
+.comment {
+	color: #989DA5;
+}
+
+.pageLinc {
+	padding: 1rem;
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
+.flexContanerWarpRow {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
+.flexContanerWarpColumn {
+	margin-left: 1rem;
+	margin-right: 1rem;
+	column-count: 2;
+}
+
+.mainContent {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	max-width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 100vh;
+	background-color: #f7f7f7;
+}
+
+.prymoryButton {
+	background-color: rgba(112, 97, 53, 0.7);
+	color: white;
+}
+
+.prymoryButton:hover {
+	background-color: rgba(46, 36, 6, 0.795);
+}
+
+.secondaryButton {
+	transition-duration: 0.5s;
+	color: black;
+	border: 0;
+}
+
+.secondaryButton:hover {
+	transition-duration: 0.5s;
+	background-color: rgba(46, 36, 6, 0.795);
+	color: white;
+}
+
+.secondaryButton:active {
+	transition-duration: 0.5s;
+	background-color: #E89124;
+}
+
+.flexContanerVertical {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.flexContanerHorizontally {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.flexContanerHorizontally a {
+	padding: 1rem;
+	width: 100%;
+}
+
+.loginForm {
+	max-width: 600px;
+	width: 100%;
+	padding: 3rem;
+}
+
+.loginFormContaner {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 0.1rem;
+}
+
+.loginFormImg {
+	width: 1.5rem;
+	padding: 1rem;
+}
+
+.loginFormTextField {
+	background-color: #cfd6d8;
+}
+
+.shadow {
+	box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.border {
+	border-left: 0.1rem solid rgba(112, 97, 53, 0.7);
+	border-right: 0.1rem solid rgba(112, 97, 53, 0.7);
+	border-top: 0.1rem solid rgba(112, 97, 53, 0.7);
+	border-bottom: 0;
+}
+
+.border:last-child {
+	border-bottom: 0.1rem solid rgba(112, 97, 53, 0.7);
+}
+
+.horizontalListItem {
+	border-radius: 0;
+	overflow: hidden;
+}
+
+.horizontalListItem:first-child {
+	border-top-left-radius: 0.7rem;
+	border-top-right-radius: 0.7rem;
+}
+
+.horizontalListItem:last-child {
+	border-bottom-left-radius: 0.7rem;
+	border-bottom-right-radius: 0.7rem;
+}
+
+.alertSpan {
+	position: absolute;
+}
+
+.titleLable {
+	margin: 0;
+	text-align: center;
+	width: 100%;
+	overflow: hidden;
+}
+
+.navbar {
+	display: flex;
+	flex-direction: row;
+	background-color: width;
+	justify-content: space-between;
+}
+
+.navbar ul {
+	margin: 0;
+	padding: 0;
+}
+
+.navbar li {
+	display: flex;
+	align-items: center;
+	width: max-content;
+}
+
+.navbar li:first-child {
+	margin-left: auto;
+}
+
+.navbar a {
+	padding: 1rem;
+}
+
+.navbar .secondaryButton {
+	width: auto;
+}

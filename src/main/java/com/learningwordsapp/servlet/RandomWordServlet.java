@@ -1,6 +1,7 @@
 package com.learningwordsapp.servlet;
 
 import com.testData.ConnectDB;
+import com.testData.TestWords;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,11 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet("/home")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/randomWord")
+public class RandomWordServlet extends HttpServlet{
 
     private Connection connection;
 
@@ -28,7 +32,21 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/view/home.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/randomWord.jsp").forward(request, response);
     }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter writer =
+        new PrintWriter(new OutputStreamWriter(
+                response.getOutputStream(),
+                StandardCharsets.UTF_8),
+                true);
+        try {
+            writer.println(TestWords.GetRandom().toJson());
+        } finally {
+            writer.close();
+        }
+        response.setStatus(200);
+    }
 }
