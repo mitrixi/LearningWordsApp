@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet("/home")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/exit")
+public class ExitServlet extends HttpServlet {
 
     private Connection connection;
 
@@ -28,7 +28,10 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/view/home.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        session.setAttribute("name", null);
+        session.setAttribute("login", null);
+        response.sendRedirect("/home");
     }
 
 }

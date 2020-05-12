@@ -17,7 +17,11 @@
                 </div>
                 <div class="horizontalListItem border flexContanerHorizontally loginFormTextField">
                     <img class="loginFormImg" src="img/userImg.svg" />
-                    <input type="text" name="username" pattern="[A-Za-zА-Яа-яЁё\s]+" placeholder="Имя пользователя" role="textbox"/>
+                    <input type="text" name="userlogin" pattern="[A-Za-zА-Яа-яЁё\s]+" placeholder="Логин" role="textbox"/>
+                </div>
+                <div class="horizontalListItem border flexContanerHorizontally loginFormTextField">
+                    <img class="loginFormImg" src="img/userImg.svg" />
+                    <input type="text" name="username" pattern="[A-Za-zА-Яа-яЁё\s]+" placeholder="Как к вам обращаться" role="textbox"/>
                 </div>
                 <div class="horizontalListItem border flexContanerHorizontally loginFormTextField">
                     <img class="loginFormImg" src="img/keyImg.svg" />

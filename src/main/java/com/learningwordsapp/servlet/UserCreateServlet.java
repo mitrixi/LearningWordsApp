@@ -1,6 +1,7 @@
 package com.learningwordsapp.servlet;
 
-import com.kirilin.ConnectDB;
+import com.learningwordsapp.model.User;
+import com.testData.ConnectDB;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,30 +26,38 @@ public class UserCreateServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/view/createNewUser.jsp").forward(req, resp);
+    protected void doGet(
+            HttpServletRequest req,
+            HttpServletResponse response)
+            throws ServletException, IOException {
+        req.getRequestDispatcher("/view/createNewUser.jsp").forward(req, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(
+            HttpServletRequest req,
+            HttpServletResponse response)
+            throws ServletException, IOException {
         String userID = "TEMP VALUE";
         String userName = req.getParameter("username");
         String userLogin = req.getParameter("userlogin");
         String userEmail = req.getParameter("useremail");
         String userPassword = req.getParameter("userpassword");
+        String confirmationPassword = req.getParameter("confirmationpassword");
+        User newUser = new User(userName, userLogin, userEmail, userPassword);
 
+        String querry = "insert into site.user (id, name) values (?, ?);";
+        PreparedStatement preparedStatement = null;
         try {
-
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users (id, name, login, email, password) VALUES (?, ?, ?, ?, ?)");
-            preparedStatement.setString(1, userID);
-            preparedStatement.setString(2, userName);
-            preparedStatement.setString(3, userLogin);
-            preparedStatement.setString(4, userEmail);
-            preparedStatement.setString(5, userPassword);
-            preparedStatement.execute();
-
+            preparedStatement = connection.prepareStatement(querry);
+            preparedStatement.setString(1, userName);
+            preparedStatement.setString(2, userLogin);
+            preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
-            throw new IllegalStateException(throwables);
+            throwables.printStackTrace();
         }
+
+
+        response.sendRedirect("/home");
     }
 }

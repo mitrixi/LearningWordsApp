@@ -1,7 +1,5 @@
 <%@ tag body-content="scriptless" %>
 <%@ tag description="Main layer page" pageEncoding="UTF-8" %>
-<%@ attribute name="authorized" required="true"  rtexprvalue="false" type="java.lang.Boolean" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <footer>
     <hr/>

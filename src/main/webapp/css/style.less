@@ -1,4 +1,4 @@
-@ligthColor: #EFF6F8;
+@ligthColor: rgb(207, 214, 216);
 @primatyColorDark: rgba(46, 36, 6, 0.795);
 @primatyColorLigth: rgba(112, 97, 53, 0.7);
 
@@ -8,7 +8,7 @@
 @formColor: #E89124;
 @formColorDark: #E6857A;
 @backgroundColorDark: #989DA5;
-@backgroundColorLigth: #B1B6C2;
+@backgroundColorLigth: rgb(247, 247, 247);
 
 @shadowColorDark: rgba(0, 0, 0, 0.3);
 @shadowColorLigth: rgba(133, 133, 133, 0.3);
@@ -36,7 +36,7 @@ html, body{
   font: 10px/1.4 'Trebuchet MS', Verdana, sans-serif;
 }
 
-html, body, div, form, content, input, span, label, footer, a, header{
+html, body, div, form, content, input, span, label, footer, a, header, button{
     box-sizing: border-box;
     font-size: @fontSizeNormal;
 }
@@ -47,7 +47,6 @@ hr{
 
 footer{
     text-align: center;
-    background-color:white;
     margin-top:auto;
     margin-bottom:0;
     padding-top:@padding;
@@ -70,7 +69,7 @@ h5{
     margin:0;
 }
 
-input[type="button"], input[type="submit"]{
+input[type="button"], input[type="submit"], button{
     cursor: pointer;
     transition-duration: @transitionDurationSlow;
     padding: @padding;
@@ -78,22 +77,47 @@ input[type="button"], input[type="submit"]{
     width: 100%;
 }
 
-input[type="button"]:disabled, input[type="submit"]:disabled{
+input[type="button"]:disabled, input[type="submit"]:disabled, button:disabled{
     background-color: @backgroundColorDark;
     color: white;
 }
 
-input[type="button"]:active, input[type="submit"]:active{
+input[type="button"]:active, input[type="submit"]:active, button:active{
     background-color: @formColor;
     transition-duration: @transitionDurationSlow;
 }
 
-input[type="text"], input[type="password"], input[type="email"]{
+input[type="text"], input[type="password"], input[type="email"], button{
     background-color: transparent;
     padding: @padding;
     display: block;
     width: 100%;
     border:0;
+}
+
+.comment{
+    color: @backgroundColorDark;
+}
+
+.pageLinc{
+    padding: @padding;
+    margin-left: @padding;
+    margin-right: @padding;
+}
+
+.flexContanerWarpRow{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-left: @padding;
+    margin-right: @padding;
+}
+
+.flexContanerWarpColumn{
+    margin-left: @padding;
+    margin-right: @padding;
+    column-count: 2;
 }
 
 .mainContent{
@@ -104,7 +128,7 @@ input[type="text"], input[type="password"], input[type="email"]{
     margin-left:auto;
     margin-right:auto;
     min-height: 100vh;
-    background-color: white;
+    background-color: @backgroundColorLigth;
 }
 
 .prymoryButton{
@@ -119,7 +143,6 @@ input[type="text"], input[type="password"], input[type="email"]{
 
 .secondaryButton{
     transition-duration: @transitionDurationSlow;
-    background-color: white;
     color: black;
     border: 0;
 }
@@ -157,7 +180,6 @@ input[type="text"], input[type="password"], input[type="email"]{
 .loginForm{
     max-width: 600px;
     width:100%;
-    background-color: white;
     padding: 3rem;    
 }
 
@@ -214,7 +236,6 @@ input[type="text"], input[type="password"], input[type="email"]{
 }
 
 .titleLable{
-    background-color: white;
     margin: 0;
     text-align: center;
     width: 100%;

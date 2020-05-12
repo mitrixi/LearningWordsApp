@@ -16,7 +16,7 @@
                     <div>
                         <div class="horizontalListItem border flexContanerHorizontally loginFormTextField">
                             <img class="loginFormImg" src="img/userImg.svg" />
-                            <input type="text" name="username" pattern="[A-Za-zА-Яа-яЁё\s]+" placeholder="Имя пользователя" role="textbox"/>
+                            <input type="text" name="username" placeholder="Логин/email" role="textbox"/>
                         </div>
                         <div class="horizontalListItem border flexContanerHorizontally loginFormTextField">
                             <img class="loginFormImg" src="img/keyImg.svg" />
@@ -25,6 +25,7 @@
                         <input class="horizontalListItem border prymoryButton" type="submit" value="Войти" />
                     </div><br><br>
                     <label><input type="checkbox"/>Запомнить меня</label>
+                    <label>${error}</label>
                 </form>
             </div>
         </content>
