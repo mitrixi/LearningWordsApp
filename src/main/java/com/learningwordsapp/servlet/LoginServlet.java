@@ -1,6 +1,6 @@
 package com.learningwordsapp.servlet;
 
-import com.kirilin.ConnectDB;
+import com.learningwordsapp.util.ConnectDB;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     public void init() {
         try {
-            connection = ConnectDB.get(getServletContext().getRealPath("/WEB-INF/classes/db.properties"));
+            connection = ConnectDB.getConnection(getServletContext().getRealPath("/WEB-INF/classes/db.properties"));
         } catch (IOException | SQLException | ClassNotFoundException e) {
             throw new IllegalStateException(e);
         }

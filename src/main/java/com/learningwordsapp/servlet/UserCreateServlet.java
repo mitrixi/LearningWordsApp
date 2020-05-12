@@ -1,7 +1,6 @@
 package com.learningwordsapp.servlet;
 
-import com.kirilin.ConnectDB;
-
+import com.learningwordsapp.util.ConnectDB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +17,7 @@ public class UserCreateServlet extends HttpServlet {
     @Override
     public void init() {
         try {
-            connection = ConnectDB.get(getServletContext().getRealPath("/WEB-INF/classes/db.properties"));
+            connection = ConnectDB.getConnection(getServletContext().getRealPath("/WEB-INF/classes/db.properties"));
         } catch (IOException | SQLException | ClassNotFoundException e) {
             throw new IllegalStateException(e);
         }
@@ -29,17 +28,21 @@ public class UserCreateServlet extends HttpServlet {
         req.getRequestDispatcher("/view/createNewUser.jsp").forward(req, resp);
     }
 
+
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userID = "TEMP VALUE";
+
+        String userID = "TEMP VALUE 2";
         String userName = req.getParameter("username");
         String userLogin = req.getParameter("userlogin");
         String userEmail = req.getParameter("useremail");
         String userPassword = req.getParameter("userpassword");
 
-        try {
+        //language=SQL
+        final String SQL_INSERT_USER = "INSERT INTO learning_words_app.user (id, name, login, email, password) VALUES (?, ?, ?, ?, ?)";
 
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO users (id, name, login, email, password) VALUES (?, ?, ?, ?, ?)");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_USER);) {
             preparedStatement.setString(1, userID);
             preparedStatement.setString(2, userName);
             preparedStatement.setString(3, userLogin);
@@ -50,5 +53,7 @@ public class UserCreateServlet extends HttpServlet {
         } catch (SQLException throwables) {
             throw new IllegalStateException(throwables);
         }
+
+
     }
 }
