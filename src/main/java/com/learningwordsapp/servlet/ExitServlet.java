@@ -1,6 +1,6 @@
 package com.learningwordsapp.servlet;
 
-import com.learningwordsapp.util.ConnectDB;
+import com.testData.ConnectDB;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,15 +12,15 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-@WebServlet("/home")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/exit")
+public class ExitServlet extends HttpServlet {
 
     private Connection connection;
 
     @Override
     public void init() {
         try {
-            connection = ConnectDB.getConnection(getServletContext().getRealPath("/WEB-INF/classes/db.properties"));
+            connection = ConnectDB.get(getServletContext().getRealPath("/WEB-INF/classes/db.properties"));
         } catch (IOException | SQLException | ClassNotFoundException e) {
             throw new IllegalStateException(e);
         }
@@ -28,11 +28,10 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //необходимо реализовать логику проверки залогинился ли пользователь на сайт
-        //если нет то вывести страницу авторизации
-//        request.getRequestDispatcher("/view/login.jsp").forward(request, response);
-        //если да то вывести гравную страницу
-        request.getRequestDispatcher("/view/home.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        session.setAttribute("name", null);
+        session.setAttribute("login", null);
+        response.sendRedirect("/home");
     }
 
 }

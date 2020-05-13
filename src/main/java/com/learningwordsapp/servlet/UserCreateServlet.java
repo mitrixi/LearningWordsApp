@@ -55,5 +55,8 @@ public class UserCreateServlet extends HttpServlet {
         }
 
 
+
+
+        resp.sendRedirect("/home");
     }
 }
