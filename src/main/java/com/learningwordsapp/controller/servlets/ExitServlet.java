@@ -1,6 +1,6 @@
 package com.learningwordsapp.servlet;
 
-import com.testData.ConnectDB;
+import com.learningwordsapp.util.ConnectDB;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +20,7 @@ public class ExitServlet extends HttpServlet {
     @Override
     public void init() {
         try {
-            connection = ConnectDB.get(getServletContext().getRealPath("/WEB-INF/classes/db.properties"));
+            connection = ConnectDB.getDbConnection(getServletContext().getRealPath("/WEB-INF/classes/db.properties"));
         } catch (IOException | SQLException | ClassNotFoundException e) {
             throw new IllegalStateException(e);
         }
