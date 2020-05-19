@@ -11,6 +11,12 @@ public class Word {
 
     }
 
+    public Word(String word, String transcription, String translation) {
+        this.word = word;
+        this.transcription = transcription;
+        this.translation = translation;
+    }
+
     public Word(int id, String word, String translation, String example, String transcription) {
         this.id = id;
         this.word = word;
@@ -65,5 +71,41 @@ public class Word {
                 "id=" + id +
                 ", word='" + word + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Word word1 = (Word) o;
+
+        if (id != word1.id) return false;
+        if (!word.equals(word1.word)) return false;
+        if (!translation.equals(word1.translation)) return false;
+        if (!example.equals(word1.example)) return false;
+        return transcription.equals(word1.transcription);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + word.hashCode();
+        result = 31 * result + translation.hashCode();
+        result = 31 * result + example.hashCode();
+        result = 31 * result + transcription.hashCode();
+        return result;
+    }
+
+    public String toJson(){
+        return String.format(
+                "{\"word\" : { \"translation\" : \"%s\", " +
+                        "\"example\" : \"%s\"," +
+                        "\"word\" : \"%s\"," +
+                        "\"transcription\" : \"%s\"} }",
+                this.translation,
+                this.example,
+                this.word,
+                this.transcription);
     }
 }

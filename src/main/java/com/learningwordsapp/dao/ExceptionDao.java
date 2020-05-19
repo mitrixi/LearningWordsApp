@@ -1,4 +1,4 @@
-package com.learningwordsapp.dao.dbqueries;
+package com.learningwordsapp.dao;
 
 public class ExceptionDao extends Exception {
     public ExceptionDao() {

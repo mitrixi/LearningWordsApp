@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%
-    String login = (String) session.getAttribute("name");
+    String login = (String) session.getAttribute("userlogin");
     boolean authorized = login != null && !login.equals("");
 %>
 

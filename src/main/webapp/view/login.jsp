@@ -16,7 +16,7 @@
                     <div>
                         <div class="horizontalListItem border flexContanerHorizontally loginFormTextField">
                             <img class="loginFormImg" src="img/userImg.svg" />
-                            <input type="text" name="username" placeholder="Логин/email" role="textbox"/>
+                            <input type="text" name="useremaillogin" placeholder="Логин/email" role="textbox"/>
                         </div>
                         <div class="horizontalListItem border flexContanerHorizontally loginFormTextField">
                             <img class="loginFormImg" src="img/keyImg.svg" />

@@ -7,8 +7,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+    /*
+
+    НА УДАЛЕНИЕ
+
+    * */
 public class ConnectDB {
-    public static Connection getConnection(String realPath) throws ClassNotFoundException, SQLException, IOException {
+    public static Connection getDbConnection(String realPath) throws ClassNotFoundException, SQLException, IOException {
 
         Properties properties = new Properties();
         properties.load(new FileInputStream(realPath));

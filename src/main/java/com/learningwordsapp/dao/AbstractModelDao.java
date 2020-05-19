@@ -2,12 +2,15 @@ package com.learningwordsapp.dao;
 
 import java.util.List;
 
-public interface CrudDao<T> {
-    T get(Integer id);
+public interface AbstractModelDao<T> {
 
-    void create(T model);
+    List<T> getAll() throws ExceptionDao;
 
-    void update(T model);
+    T get(byte[] id) throws ExceptionDao;
 
-    void delete(Integer id);
+    void create(T model) throws ExceptionDao;
+
+    void update(T model) throws ExceptionDao;
+
+    void delete(Integer id) throws ExceptionDao;
 }

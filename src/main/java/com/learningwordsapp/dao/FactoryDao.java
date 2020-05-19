@@ -7,21 +7,26 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class ConnectionPool {
+/**
+ * Connection Pool
+ */
 
-    private static volatile ConnectionPool instance;
+public class FactoryDao {
 
-    public static ConnectionPool getInstance() {
-        ConnectionPool localInstance = instance;
-        if (localInstance == null) {
-            synchronized (ConnectionPool.class) {
-                localInstance = instance;
-                if (localInstance == null) {
-                    instance = localInstance = new ConnectionPool();
+    private static volatile FactoryDao instance;
+
+    private FactoryDao() {
+    }
+
+    public static FactoryDao getInstance() {
+        if (instance == null) {
+            synchronized (FactoryDao.class) {
+                if (instance == null) {
+                    instance = new FactoryDao();
                 }
             }
         }
-        return localInstance;
+        return instance;
     }
 
     public Connection getConnection() {

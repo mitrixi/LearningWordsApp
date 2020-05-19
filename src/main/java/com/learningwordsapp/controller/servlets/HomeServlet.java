@@ -1,4 +1,4 @@
-package com.learningwordsapp.servlet;
+package com.learningwordsapp.controller.servlets;
 
 import com.learningwordsapp.util.ConnectDB;
 
@@ -8,22 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
-
-    private Connection connection;
-
-    @Override
-    public void init() {
-        try {
-            connection = ConnectDB.getDbConnection(getServletContext().getRealPath("/WEB-INF/classes/db.properties"));
-        } catch (IOException | SQLException | ClassNotFoundException e) {
-            throw new IllegalStateException(e);
-        }
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

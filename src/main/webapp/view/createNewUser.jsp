@@ -13,7 +13,7 @@
             <form method="post" action="/newUser">
                 <div class="horizontalListItem border flexContanerHorizontally loginFormTextField">
                     <img class="loginFormImg" src="img/emailImg.svg" />
-                    <input type="email" name="email" placeholder="Электронная почта" role="textbox"/>
+                    <input type="email" name="useremail" placeholder="Электронная почта" role="textbox"/>
                 </div>
                 <div class="horizontalListItem border flexContanerHorizontally loginFormTextField">
                     <img class="loginFormImg" src="img/userImg.svg" />

@@ -1,4 +1,4 @@
-package com.learningwordsapp.servlet;
+package com.learningwordsapp.controller.servlets;
 
 import com.learningwordsapp.util.ConnectDB;
 import com.testData.TestWords;

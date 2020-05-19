@@ -1,8 +1,7 @@
 package com.learningwordsapp.controller.servlets;
 
+import com.learningwordsapp.dao.dbqueries.UserDbQueryDao;
 import com.learningwordsapp.model.User;
-import com.learningwordsapp.util.ConnectDB;
-import com.learningwordsapp.util.QueryFactory;
 import com.learningwordsapp.util.UUIDUtil;
 
 import javax.servlet.ServletException;
@@ -12,21 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @WebServlet("/newUser")
-public class UserCreateServlet extends HttpServlet {
-
-    private Connection connection;
-
-    @Override
-    public void init() {
-        try {
-            connection = ConnectDB.getDbConnection(getServletContext().getRealPath("/WEB-INF/classes/db.properties"));
-        } catch (IOException | SQLException | ClassNotFoundException e) {
-            throw new IllegalStateException(e);
-        }
-    }
+public class CreateUserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,22 +31,33 @@ public class UserCreateServlet extends HttpServlet {
         String userEmail = req.getParameter("useremail");
         String userPassword = req.getParameter("userpassword");
 
-        User user = new User(userID, userName, userLogin, userEmail, userPassword);
+        Map<String, String> messages = new HashMap<>();
 
-        try (Statement statement = connection.createStatement();
-             PreparedStatement prepStatement = connection.prepareStatement(QueryFactory.getInsertUser())) {
 
-            if (statement.executeQuery(QueryFactory.checkByLogin(userLogin)).next() ||
-                    statement.executeQuery(QueryFactory.checkByEmail(userEmail)).next()) {
-                req.setAttribute("error", "Пользователь с такими данными уже существует");
+        if (userName == null || userName.trim().isEmpty()) {
+            messages.put("name", "Введите ваше имя");
+        }
+        if (userLogin == null || userLogin.trim().isEmpty()) {
+            messages.put("login", "Введите логин");
+        }
+        if (userEmail == null || userEmail.trim().isEmpty()) {
+            messages.put("name", "Введите электронную почту");
+        }
+        if (userPassword == null || userPassword.trim().isEmpty())
+            messages.put("password", "Введите пароль");
+
+
+        if (messages.isEmpty()) {
+
+            User user = new User(userID, userName, userLogin, userEmail, userPassword, User.ROLE.USER);
+
+            if (new UserDbQueryDao().checkSuchUserAlreadyExists(user)) {
+
+                messages.put("user", "Такой пользователь уже существует");
                 req.getRequestDispatcher("/view/createNewUser.jsp").forward(req, resp);
-            } else {
-                prepStatement.setBytes(1, userID);
-                prepStatement.setString(2, userName);
-                prepStatement.setString(3, userLogin);
-                prepStatement.setString(4, userEmail);
-                prepStatement.setString(5, userPassword);
-                prepStatement.execute();
+
+
+            } else if (new UserDbQueryDao().add(user)) {
 
                 HttpSession session = req.getSession();
                 session.setAttribute("email", userEmail);
@@ -65,9 +65,8 @@ public class UserCreateServlet extends HttpServlet {
 
                 resp.sendRedirect("/home");
             }
-
-        } catch (SQLException | ServletException | IOException throwables) {
-            throw new IllegalStateException(throwables);
         }
+        req.setAttribute("messages", messages);
+        req.getRequestDispatcher("/view/createNewUser.jsp").forward(req, resp);
     }
 }
